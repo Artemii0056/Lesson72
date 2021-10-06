@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollectingCoins : MonoBehaviour
+public class Coin : MonoBehaviour
 {
-    private GameObject[] _coin;
 
 }

@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5519450086520095095}
   - component: {fileID: -2750904657158834847}
   - component: {fileID: -7831608264063165397}
+  - component: {fileID: 5922319526452958348}
   m_Layer: 0
-  m_Name: Gold
+  m_Name: Coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -116,7 +117,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157dba3c717715b4184f3efba13888b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coin: {fileID: 5519450086520095088}
 --- !u!61 &-7831608264063165397
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -143,3 +143,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6145115, y: 0.76870656}
   m_EdgeRadius: 0
+--- !u!114 &5922319526452958348
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5519450086520095088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ff49d81bc4da50478a0cb58eaaa0a4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

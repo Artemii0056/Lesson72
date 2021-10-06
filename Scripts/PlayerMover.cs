@@ -2,21 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
+
+public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _checkRadius;
     [SerializeField] private Transform _groundCheck;
     [SerializeField] private LayerMask _ground;
 
-    private const string _isRun = "IsRun";
-    private const string _jump = "Jump";
+    private const string IsRun = "IsRun";
+    private const string Jump = "Jump";
 
     private Animator _animator;
     private Rigidbody2D _rigidbody;
 
     private float _speed = 2;
     private float _jumpForce = 8f;
-    private int _collectedCoins = 0;
+    private int _collectedCoins = 0; 
     private int _jumpCount = 1;
     private bool _onGround;
 
@@ -31,18 +34,18 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.D) == true)
         {
             transform.Translate(_speed * Time.deltaTime, 0, 0);
-            _animator.SetBool(_isRun, true); 
+            _animator.SetBool(IsRun, true); 
             transform.localScale = new Vector3(1, 1, 1);
         }
         else if (Input.GetKey(KeyCode.A) == true)
         {
             transform.Translate(_speed * Time.deltaTime * -1, 0, 0);
-            _animator.SetBool(_isRun, true);
+            _animator.SetBool(IsRun, true);
             transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
-            _animator.SetBool(_isRun, false);
+            _animator.SetBool(IsRun, false);
         }
 
         _onGround = Physics2D.OverlapCircle(_groundCheck.position, _checkRadius, _ground);
@@ -55,18 +58,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKey(KeyCode.Space) == true && _jumpCount > 0)
         {
             _rigidbody.velocity = _jumpForce * Vector2.up;
-            _animator.Play(_jump);
+            _animator.Play(Jump);
             _jumpCount--;
-            Debug.Log(_jumpCount);
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void CollectedCoins()
     {
-        if (collision.TryGetComponent<DestroyCoins>(out DestroyCoins destroyCoins))
-        {
-            _collectedCoins++;
-            Debug.Log(_collectedCoins);
-        }
+        _collectedCoins++;
+        Debug.Log(_collectedCoins);
     }
 }
